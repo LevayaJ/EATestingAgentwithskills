@@ -1,0 +1,14 @@
+{
+  "name": "backend-tests",
+  "version": "1.0.0",
+  "description": "Backend API tests for Employee Manager",
+  "scripts": {
+    "test": "jest --detectOpenHandles",
+    "test:watch": "jest --watch"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "jest": "^29.7.0",
+    "axios": "^1.6.0"
+  }
+}

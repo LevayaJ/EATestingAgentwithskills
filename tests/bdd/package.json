@@ -1,0 +1,15 @@
+{
+  "name": "bdd-tests",
+  "version": "1.0.0",
+  "description": "BDD tests for Employee Manager",
+  "scripts": {
+    "test": "cucumber-js",
+    "test:report": "cucumber-js --format html:cucumber-report.html"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "@cucumber/cucumber": "^9.5.0",
+    "@playwright/test": "^1.40.0",
+    "axios": "^1.6.0"
+  }
+}
