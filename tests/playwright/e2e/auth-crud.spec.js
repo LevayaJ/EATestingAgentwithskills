@@ -76,11 +76,9 @@ test.describe('Employee CRUD Tests', () => {
     await employeeList.clickAddEmployee(); 
     await page.waitForTimeout(2000)
      await employeeForm.fillForm('New Employee','newemp@example.com','Developer' );
-    // console.log('Form filled with employee details');
-    // await employeeForm.submit();
-// await employeeForm.fillFormByRole('New Employee', 'newemp@example.com', 'Developer');
+   
     console.log('Form filled with employee details using getByRole');
-  //  await employeeForm.submit();
+  
    await employeeForm.clickAddEmployee();
     console.log('Form submitted');
     // Should return to list
