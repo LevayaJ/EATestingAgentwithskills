@@ -1,14 +1,16 @@
 export class LoginPage {
   constructor(page) {
     this.page = page;
-    this.usernameInput = page.locator('input[name="username"]');
-    this.passwordInput = page.locator('input[name="password"]');
-    this.loginButton = page.locator('button:has-text("Login")');
-    this.errorMessage = page.locator('[role="alert"]');
+    // Material-UI TextField inputs can be found by their label or by getByRole
+    this.usernameInput = page.locator('input[type="text"]').first();
+    this.passwordInput = page.locator('input[type="password"]');
+    this.loginButton = page.locator('button[type="submit"]');
+    this.errorMessage = page.locator('[role="alert"], .error, [class*="error"]');
   }
 
   async goto() {
     await this.page.goto('/login');
+    await this.page.waitForLoadState('networkidle');
   }
 
   async login(username, password) {
@@ -22,6 +24,6 @@ export class LoginPage {
   }
 
   async isErrorVisible() {
-    return await this.errorMessage.isVisible();
+    return await this.page.locator('text=/Invalid credentials|Login failed/i').isVisible().catch(() => false);
   }
 }

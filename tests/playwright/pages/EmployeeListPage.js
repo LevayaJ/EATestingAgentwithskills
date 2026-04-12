@@ -3,13 +3,14 @@ export class EmployeeListPage {
     this.page = page;
     this.addButton = page.locator('button:has-text("Add Employee")');
     this.employeeTable = page.locator('table');
-    this.searchInput = page.locator('input[placeholder*="search" i], input[placeholder*="filter" i]');
-    this.editButtons = page.locator('[data-action="edit"]');
-    this.deleteButtons = page.locator('[data-action="delete"]');
+    this.searchInput = page.locator('input[type="text"]');
+    this.editButtons = page.locator('button:has-text("Edit")');
+    this.deleteButtons = page.locator('button:has-text("Delete")');
   }
 
   async goto() {
     await this.page.goto('/list');
+    await this.page.waitForLoadState('networkidle');
   }
 
   async clickAddEmployee() {
@@ -32,7 +33,7 @@ export class EmployeeListPage {
 
   async deleteEmployee(name) {
     const row = await this.page.locator(`text=${name}`);
-    const deleteButton = row.locator('..').locator('[data-action="delete"]');
+    const deleteButton = row.locator('..').locator('button:has-text("Delete")');
     await deleteButton.click();
   }
 
@@ -42,7 +43,7 @@ export class EmployeeListPage {
 
   async editEmployee(name) {
     const row = await this.page.locator(`text=${name}`);
-    const editButton = row.locator('..').locator('[data-action="edit"]');
+    const editButton = row.locator('..').locator('button:has-text("Edit")');
     await editButton.click();
   }
 }
